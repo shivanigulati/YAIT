@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { CheckCircle2, ChevronLeft } from "lucide-react";
+import { Check, CheckCircle2, ChevronLeft } from "lucide-react";
 import StepIndicator from "../StepIndicator";
 import Reveal from "../Reveal";
 import { serviceCategories } from "../../lib/content";
@@ -158,8 +158,18 @@ export default function GetSupport() {
                                   type="checkbox"
                                   checked={checked}
                                   onChange={() => toggleService(sub.name)}
-                                  className="h-4 w-4 accent-gold-500 shrink-0"
+                                  className="sr-only"
                                 />
+                                <span
+                                  aria-hidden="true"
+                                  className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
+                                    checked
+                                      ? "bg-gold-400 border-gold-400"
+                                      : "bg-navy-900/50 border-cream-100/25"
+                                  }`}
+                                >
+                                  {checked && <Check size={13} strokeWidth={3} className="text-navy-900" />}
+                                </span>
                                 <span className="text-sm text-cream-100">{sub.name}</span>
                               </label>
                             );
