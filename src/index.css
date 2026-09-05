@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
+
+body {
+  @apply bg-cream-100 text-navy-900 font-sans antialiased;
+  overscroll-behavior-y: none;
+}
+
+::selection {
+  @apply bg-gold-400/30 text-navy-900;
+}
+
+/* ---------- Reusable primitives ---------- */
+
+.eyebrow {
+  @apply font-mono text-xs sm:text-sm tracking-[0.28em] uppercase text-gold-600 font-medium;
+}
+
+.btn-pill {
+  @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold tracking-wide transition-all duration-300;
+}
+
+.btn-gold {
+  @apply btn-pill bg-gold-gradient text-navy-900 shadow-soft hover:brightness-105 hover:-translate-y-0.5 active:translate-y-0;
+}
+
+.btn-outline-dark {
+  @apply btn-pill border border-navy-900/25 text-navy-900 hover:border-navy-900 hover:bg-navy-900 hover:text-cream-150;
+}
+
+.btn-outline-light {
+  @apply btn-pill border border-cream-100/30 text-cream-100 hover:border-gold-400 hover:text-gold-400;
+}
+
+/* ---------- Watermark wordmark ---------- */
+
+.watermark {
+  @apply pointer-events-none select-none absolute inset-0 flex items-center justify-center overflow-hidden;
+}
+
+.watermark span {
+  @apply font-serif font-bold whitespace-nowrap;
+  font-size: clamp(6rem, 22vw, 16rem);
+  line-height: 1;
+  color: currentColor;
+  opacity: 0.045;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Dashed utility card ---------- */
+
+.dash-card {
+  @apply relative rounded-2xl border border-dashed border-gold-400/40 bg-navy-800/60 backdrop-blur-sm p-5 sm:p-6;
+}
+
+.dash-card-header {
+  @apply flex items-center justify-between mb-4 font-mono text-[11px] tracking-widest uppercase text-gold-400/80;
+}
+
+/* ---------- Flip cards ---------- */
+
+.flip-card {
+  perspective: 1400px;
+}
+
+.flip-card-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.flip-card:hover .flip-card-inner,
+.flip-card:focus-within .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flip-card-back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+}
+
+/* ---------- Scrollbar niceties for horizontal galleries ---------- */
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* ---------- Starburst decoration ---------- */
+
+.starburst {
+  @apply absolute text-gold-400/25;
+}
+
+/* ---------- Hero: deep gradient, grain, shimmer text ---------- */
+
+.hero-gradient {
+  background:
+    radial-gradient(1100px 620px at 50% -8%, rgba(228, 189, 76, 0.07), transparent 60%),
+    radial-gradient(900px 560px at 88% 65%, rgba(15, 28, 56, 0.7), transparent 70%),
+    linear-gradient(180deg, #050b1a 0%, #08142a 45%, #0f1c38 100%);
+}
+
+.grain-overlay {
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  opacity: 0.05;
+  mix-blend-mode: overlay;
+}
+
+.shimmer-gold {
+  background-image: linear-gradient(
+    110deg,
+    theme(colors.gold.400) 30%,
+    theme(colors.cream.50) 50%,
+    theme(colors.gold.400) 70%
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-blob,
+  .animate-blob-slow,
+  .animate-marquee,
+  .animate-particle-drift,
+  .animate-shimmer,
+  .animate-line-travel {
+    animation: none !important;
+  }
+}
