@@ -12,36 +12,21 @@ import { usePrefersReducedMotion } from "../../lib/usePrefersReducedMotion";
 const CONFIG = {
   // How many points of light on each device class. Kept low — this is a
   // sparse, elegant field, not a dense particle-network effect.
-  particleCountDesktop: 42,
-  particleCountTablet: 28,
-  particleCountTouch: 18,
+  particleCountDesktop: 46,
+  particleCountTablet: 30,
+  particleCountTouch: 20,
 
   // Size range in px (before depth scaling below).
-  particleSizeMin: 1.4,
-  particleSizeMax: 4.2,
+  particleSizeMin: 0.8,
+  particleSizeMax: 2.2,
 
   // Opacity range — deliberately low so the dark hero reads exactly as it
   // does today until the cursor draws attention to the field.
-  particleOpacityMin: 0.09,
-  particleOpacityMax: 0.38,
+  particleOpacityMin: 0.08,
+  particleOpacityMax: 0.34,
 
   // Warm gold / champagne / ivory tones only — no neon, no blue/purple.
   particleColors: ["#eccd8f", "#e4bd4c", "#f8f4ea", "#f5e8c1"],
-
-  // Relative mix of vector shapes drawn instead of plain dots. Weights don't
-  // need to sum to 1 — they're normalized automatically. "sparkle" is a
-  // slim four-point star (a tiny light flare), "diamond" a soft rotated
-  // square, "ring" a hollow circle for distant/faint points.
-  shapeWeights: {
-    dot: 0.42,
-    sparkle: 0.32,
-    diamond: 0.14,
-    ring: 0.12,
-  },
-
-  // Soft glow behind sparkle/diamond shapes only — kept small, never on the
-  // plain dots, so it stays elegant rather than glowy/gamey.
-  glowBlur: 5,
 
   // How far from the cursor particles start reacting (px), and how hard
   // they're pushed at the very center of that radius.
@@ -57,15 +42,11 @@ const CONFIG = {
   // with no cursor input at all. Kept tiny on purpose.
   ambientDriftPx: 5,
   ambientSpeed: 0.00028,
-  // Slow independent rotation for sparkle/diamond shapes (radians/ms).
-  ambientSpin: 0.00012,
 
   // Ambient-only animation for touch/coarse-pointer devices (no cursor to
   // react to). Set to false to freeze the field completely on touch.
   ambientOnTouch: true,
 } as const;
-
-type Shape = "dot" | "sparkle" | "diamond" | "ring";
 
 type Particle = {
   baseX: number;
@@ -79,20 +60,7 @@ type Particle = {
   depth: number; // 0 = far/still, 1 = near/reactive
   color: string;
   phase: number;
-  rotation: number;
-  shape: Shape;
 };
-
-function pickShape(): Shape {
-  const entries = Object.entries(CONFIG.shapeWeights) as [Shape, number][];
-  const total = entries.reduce((sum, [, w]) => sum + w, 0);
-  let roll = Math.random() * total;
-  for (const [shape, weight] of entries) {
-    roll -= weight;
-    if (roll <= 0) return shape;
-  }
-  return "dot";
-}
 
 function buildParticles(width: number, height: number, count: number): Particle[] {
   const particles: Particle[] = [];
@@ -111,102 +79,15 @@ function buildParticles(width: number, height: number, count: number): Particle[
       depth,
       color: CONFIG.particleColors[Math.floor(Math.random() * CONFIG.particleColors.length)],
       phase: Math.random() * Math.PI * 2,
-      rotation: Math.random() * Math.PI * 2,
-      shape: pickShape(),
     });
   }
   return particles;
-}
-
-/** Draws a slim four-point star (a tiny light flare) centered at (x, y). */
-function drawSparkle(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, rotation: number) {
-  const long = size * 2.6;
-  const short = size * 0.55;
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(rotation);
-  ctx.beginPath();
-  ctx.moveTo(0, -long);
-  ctx.quadraticCurveTo(short, -short, long, 0);
-  ctx.quadraticCurveTo(short, short, 0, long);
-  ctx.quadraticCurveTo(-short, short, -long, 0);
-  ctx.quadraticCurveTo(-short, -short, 0, -long);
-  ctx.closePath();
-  ctx.fill();
-  ctx.restore();
-}
-
-function drawDiamond(ctx: CanvasRenderingContext2D, x: number, y: number, size: number, rotation: number) {
-  const r = size * 1.6;
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.rotate(rotation);
-  ctx.beginPath();
-  ctx.moveTo(0, -r);
-  ctx.lineTo(r, 0);
-  ctx.lineTo(0, r);
-  ctx.lineTo(-r, 0);
-  ctx.closePath();
-  ctx.fill();
-  ctx.restore();
-}
-
-function drawRing(ctx: CanvasRenderingContext2D, x: number, y: number, size: number) {
-  ctx.beginPath();
-  ctx.arc(x, y, size * 1.4, 0, Math.PI * 2);
-  ctx.lineWidth = Math.max(0.5, size * 0.32);
-  ctx.stroke();
-}
-
-function drawDot(ctx: CanvasRenderingContext2D, x: number, y: number, size: number) {
-  ctx.beginPath();
-  ctx.arc(x, y, size, 0, Math.PI * 2);
-  ctx.fill();
-}
-
-/** Renders one particle at (x, y) with the given opacity multiplier. */
-function drawParticle(
-  ctx: CanvasRenderingContext2D,
-  p: Particle,
-  x: number,
-  y: number,
-  opacityMultiplier: number,
-) {
-  ctx.globalAlpha = p.opacity * opacityMultiplier;
-  ctx.fillStyle = p.color;
-  ctx.strokeStyle = p.color;
-
-  const glows = p.shape === "sparkle" || p.shape === "diamond";
-  if (glows) {
-    ctx.shadowColor = p.color;
-    ctx.shadowBlur = CONFIG.glowBlur;
-  }
-
-  switch (p.shape) {
-    case "sparkle":
-      drawSparkle(ctx, x, y, p.size, p.rotation);
-      break;
-    case "diamond":
-      drawDiamond(ctx, x, y, p.size, p.rotation);
-      break;
-    case "ring":
-      drawRing(ctx, x, y, p.size);
-      break;
-    default:
-      drawDot(ctx, x, y, p.size);
-  }
-
-  if (glows) {
-    ctx.shadowBlur = 0;
-  }
 }
 
 /**
  * Subtle, cursor-reactive field of light for the Hero background only.
  * Pure canvas — no DOM nodes per particle — so it stays cheap regardless of
  * particle count. Renders behind the existing gradient blobs/grain/copy.
- * Shapes are small vector flares/diamonds/rings/dots rather than uniform
- * balls, for a more custom-designed look.
  */
 export default function HeroParticleField({
   containerRef,
@@ -252,24 +133,33 @@ export default function HeroParticleField({
       particles = buildParticles(width(), height(), particleCount);
     };
 
-    const renderStatic = () => {
-      ctx.clearRect(0, 0, width(), height());
-      for (const p of particles) {
-        drawParticle(ctx, p, p.baseX, p.baseY, 0.55);
-      }
-      ctx.globalAlpha = 1;
-    };
-
     sizeCanvas();
     seed();
 
     // Static, extremely subtle render for reduced-motion — no rAF loop at all.
     if (prefersReducedMotion) {
-      renderStatic();
+      ctx.clearRect(0, 0, width(), height());
+      for (const p of particles) {
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity * 0.6;
+        ctx.arc(p.baseX, p.baseY, p.size, 0, Math.PI * 2);
+        ctx.fill();
+      }
+      ctx.globalAlpha = 1;
+
       const onResize = () => {
         sizeCanvas();
         seed();
-        renderStatic();
+        ctx.clearRect(0, 0, width(), height());
+        for (const p of particles) {
+          ctx.beginPath();
+          ctx.fillStyle = p.color;
+          ctx.globalAlpha = p.opacity * 0.6;
+          ctx.arc(p.baseX, p.baseY, p.size, 0, Math.PI * 2);
+          ctx.fill();
+        }
+        ctx.globalAlpha = 1;
       };
       window.addEventListener("resize", onResize);
       return () => window.removeEventListener("resize", onResize);
@@ -309,18 +199,15 @@ export default function HeroParticleField({
 
       for (const p of particles) {
         // Gentle independent ambient drift — present on every device class.
-        const ambientX =
-          Math.sin(time * CONFIG.ambientSpeed + p.phase) * CONFIG.ambientDriftPx * (0.3 + p.depth * 0.7);
-        const ambientY =
-          Math.cos(time * CONFIG.ambientSpeed * 1.3 + p.phase) * CONFIG.ambientDriftPx * (0.3 + p.depth * 0.7);
+        const ambientX = Math.sin(time * CONFIG.ambientSpeed + p.phase) * CONFIG.ambientDriftPx * (0.3 + p.depth * 0.7);
+        const ambientY = Math.cos(time * CONFIG.ambientSpeed * 1.3 + p.phase) * CONFIG.ambientDriftPx * (0.3 + p.depth * 0.7);
 
         if (isFinePointer && mouse.active) {
           const dx = p.baseX - mouse.x;
           const dy = p.baseY - mouse.y;
           const dist = Math.sqrt(dx * dx + dy * dy);
           if (dist < CONFIG.interactionRadius && dist > 0.001) {
-            const force =
-              (1 - dist / CONFIG.interactionRadius) * CONFIG.interactionStrength * (0.3 + p.depth * 0.7);
+            const force = (1 - dist / CONFIG.interactionRadius) * CONFIG.interactionStrength * (0.3 + p.depth * 0.7);
             p.targetX = (dx / dist) * force;
             p.targetY = (dy / dist) * force;
           } else {
@@ -335,9 +222,12 @@ export default function HeroParticleField({
         const ease = mouse.active ? CONFIG.easeTowardCursor : CONFIG.easeReturnHome;
         p.offsetX += (p.targetX - p.offsetX) * ease;
         p.offsetY += (p.targetY - p.offsetY) * ease;
-        p.rotation += CONFIG.ambientSpin * (0.4 + p.depth * 0.6) * 16.67; // ~per-frame at 60fps, time-independent enough for this subtlety
 
-        drawParticle(ctx, p, p.baseX + p.offsetX + ambientX, p.baseY + p.offsetY + ambientY, 1);
+        ctx.beginPath();
+        ctx.fillStyle = p.color;
+        ctx.globalAlpha = p.opacity;
+        ctx.arc(p.baseX + p.offsetX + ambientX, p.baseY + p.offsetY + ambientY, p.size, 0, Math.PI * 2);
+        ctx.fill();
       }
       ctx.globalAlpha = 1;
 
@@ -346,7 +236,8 @@ export default function HeroParticleField({
 
     if (!isFinePointer && !CONFIG.ambientOnTouch) {
       // Touch device, ambient animation disabled entirely — paint once and stop.
-      renderStatic();
+      tick(0);
+      cancelAnimationFrame(frameId);
     } else {
       frameId = requestAnimationFrame(tick);
     }
