@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { usePrefersReducedMotion } from "../../lib/usePrefersReducedMotion";
+import HeroParticleField from "./HeroParticleField";
 
 const WORDS = ["Learn.", "Serve.", "Empower."];
 
@@ -71,6 +72,9 @@ export default function Hero() {
     >
       {/* ---------- Ambient background layers ---------- */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
+        {/* Subtle cursor-reactive field of light — canvas-based, behind everything else. */}
+        <HeroParticleField containerRef={sectionRef} />
+
         <motion.div
           animate={{ opacity: hoveredWord === 0 ? 0.3 : 0.12, scale: hoveredWord === 0 ? 1.15 : 1 }}
           transition={{ duration: 0.9, ease: "easeOut" }}
