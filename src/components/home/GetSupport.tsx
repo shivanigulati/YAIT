@@ -148,10 +148,10 @@ export default function GetSupport() {
                             return (
                               <label
                                 key={sub.name}
-                                className={`flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${
+                                className={`btn-press flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${
                                   checked
-                                    ? "border-gold-400 bg-gold-50"
-                                    : "border-navy-900/10 bg-white hover:border-navy-900/25"
+                                    ? "border-gold-400 bg-navy-900 shadow-[0_0_16px_rgba(228,189,76,0.3)]"
+                                    : "border-navy-700 bg-navy-800 hover:bg-navy-700 hover:border-navy-600"
                                 }`}
                               >
                                 <input
@@ -160,7 +160,7 @@ export default function GetSupport() {
                                   onChange={() => toggleService(sub.name)}
                                   className="h-4 w-4 accent-gold-500 shrink-0"
                                 />
-                                <span className="text-sm text-navy-900">{sub.name}</span>
+                                <span className="text-sm text-cream-100">{sub.name}</span>
                               </label>
                             );
                           })}
