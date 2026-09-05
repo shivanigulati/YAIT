@@ -65,14 +65,14 @@ export default function AreasWeSupport() {
               <button
                 key={category.id}
                 onClick={() => selectTab(i)}
-                className={`inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 border ${
+                className={`btn-press inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 border ${
                   isActive
-                    ? "bg-navy-900 text-cream-50 border-navy-900 shadow-card"
-                    : "bg-white/60 text-navy-600 border-navy-900/10 hover:border-navy-900/25 hover:text-navy-900"
+                    ? "bg-navy-900 text-gold-300 border-gold-400/70 shadow-[0_0_18px_rgba(228,189,76,0.35)] scale-[1.04]"
+                    : "bg-navy-800 text-cream-200 border-navy-700 hover:bg-navy-700 hover:text-gold-200 hover:border-navy-600"
                 }`}
                 aria-pressed={isActive}
               >
-                <Icon size={15} className={isActive ? "text-gold-400" : "text-navy-400"} />
+                <Icon size={15} className={isActive ? "text-gold-400" : "text-gold-300/60"} />
                 {category.title}
               </button>
             );
@@ -124,7 +124,7 @@ export default function AreasWeSupport() {
         <div className="mt-8 sm:mt-10 flex items-center justify-between gap-4">
           <button
             onClick={goPrev}
-            className="inline-flex items-center gap-1.5 rounded-full bg-gold-400/90 hover:bg-gold-400 text-navy-900 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-300 shadow-soft"
+            className="btn-press inline-flex items-center gap-1.5 rounded-full bg-navy-900 hover:bg-navy-800 border border-gold-400/40 text-gold-300 hover:text-gold-200 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-300 shadow-soft"
             aria-label="Previous category"
           >
             <ArrowLeft size={15} />
@@ -140,9 +140,9 @@ export default function AreasWeSupport() {
                   onClick={() => selectTab(i)}
                   aria-label={`Go to ${category.title}`}
                   aria-current={isActive}
-                  className={`rounded-full transition-all duration-300 ${
+                  className={`btn-press rounded-full transition-all duration-300 ${
                     isActive
-                      ? "w-7 h-2.5 bg-navy-900"
+                      ? "w-7 h-2.5 bg-gold-400 shadow-[0_0_10px_rgba(228,189,76,0.6)]"
                       : "w-2.5 h-2.5 bg-navy-900/20 hover:bg-navy-900/40"
                   }`}
                 />
@@ -152,7 +152,7 @@ export default function AreasWeSupport() {
 
           <button
             onClick={goNext}
-            className="inline-flex items-center gap-1.5 rounded-full bg-gold-400/90 hover:bg-gold-400 text-navy-900 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-300 shadow-soft"
+            className="btn-press inline-flex items-center gap-1.5 rounded-full bg-navy-900 hover:bg-navy-800 border border-gold-400/40 text-gold-300 hover:text-gold-200 px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-semibold tracking-wide transition-colors duration-300 shadow-soft"
             aria-label="Next category"
           >
             Next
