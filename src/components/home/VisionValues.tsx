@@ -1,6 +1,6 @@
 import { Globe2, Sparkles, RefreshCw, Handshake } from "lucide-react";
 import Reveal from "../Reveal";
-import FlipCard from "../FlipCard";
+import VisionCard from "./VisionCard";
 import Watermark from "../Watermark";
 import { coreValues } from "../../lib/content";
 
@@ -18,13 +18,24 @@ export default function VisionValues() {
           </h2>
         </Reveal>
 
+        {/*
+          Scroll-driven card interaction (inspired by Lusion's About page):
+          each card tracks its own progress through the viewport and eases in
+          with a subtle translate/rotate/scale, settling as it nears center.
+          See VisionCard.tsx for the per-card scroll physics. Content, icons,
+          colors and spacing are unchanged from the original grid.
+        */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {coreValues.map((value, i) => {
             const Icon = icons[i];
             return (
-              <Reveal key={value.front} delay={i * 0.1}>
-                <FlipCard icon={<Icon size={26} />} front={value.front} back={value.back} />
-              </Reveal>
+              <VisionCard
+                key={value.front}
+                index={i}
+                icon={<Icon size={26} />}
+                front={value.front}
+                back={value.back}
+              />
             );
           })}
         </div>
