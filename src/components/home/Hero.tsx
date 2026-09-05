@@ -39,7 +39,6 @@ export default function Hero() {
     if (!section || !glow) return;
 
     let frame = 0;
-    
     const handleMove = (event: MouseEvent) => {
       const rect = section.getBoundingClientRect();
       const x = event.clientX - rect.left;
