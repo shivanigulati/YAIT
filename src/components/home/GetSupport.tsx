@@ -115,7 +115,7 @@ export default function GetSupport() {
           </p>
         </Reveal>
 
-        <div className="rounded-3xl bg-navy-800/95 backdrop-blur-xl border border-navy-600/40 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)] p-6 sm:p-10">
+        <div className="rounded-3xl bg-navy-900/95 backdrop-blur-xl border border-navy-700/40 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)] p-6 sm:p-10">
           {step <= 4 && <StepIndicator steps={steps} current={step} />}
           {step <= 4 && (
             <p className="font-mono text-caption tracking-widest uppercase text-cream-100/40 -mt-4 mb-6">
