@@ -1,6 +1,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Mail, Phone, ArrowUp, Heart } from "lucide-react";
 import Logo from "./Logo";
+import Watermark from "./Watermark";
 
 export default function Footer() {
   const navigate = useNavigate();
@@ -24,6 +25,7 @@ export default function Footer() {
 
   return (
     <footer className="relative bg-navy-950 text-cream-100 overflow-hidden">
+      <Watermark className="text-cream-100" />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-16 pb-8">
         <div className="border-b border-cream-100/10 pb-10 mb-10">
           <p className="font-serif italic text-lg sm:text-xl text-gold-300/90 max-w-2xl mx-auto text-center">

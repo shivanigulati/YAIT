@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import Reveal from "../Reveal";
+import Watermark from "../Watermark";
 
 export default function FinalCta() {
   return (
     <section className="relative overflow-hidden bg-navy-900 py-24 sm:py-32" data-header-surface="dark">
+      <Watermark className="text-cream-100" />
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-16 left-1/4 h-72 w-72 rounded-full bg-gold-400/10 blur-[100px]" />
         <div className="absolute -bottom-16 right-1/4 h-72 w-72 rounded-full bg-navy-400/20 blur-[100px]" />

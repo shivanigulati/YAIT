@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, CheckCircle2, ChevronLeft } from "lucide-react";
 import StepIndicator from "../StepIndicator";
 import Reveal from "../Reveal";
+import Watermark from "../Watermark";
 import { serviceCategories } from "../../lib/content";
 
 type FormState = {
@@ -92,6 +93,7 @@ export default function GetSupport() {
       className="relative overflow-hidden bg-gradient-to-b from-cream-50 via-cream-100 to-cream-200 py-24 sm:py-32"
       data-header-surface="light"
     >
+      <Watermark className="text-navy-900" />
       {/* Soft ambient colour wash behind the glass card */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
         <div className="absolute -top-24 -right-16 h-[420px] w-[420px] rounded-full bg-gold-400/25 blur-[120px]" />

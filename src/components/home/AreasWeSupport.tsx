@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { Fragment, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { MonitorPlay, Speaker, ClipboardList, Bot, BarChart3, ArrowLeft, ArrowRight } from "lucide-react";
 import Reveal from "../Reveal";
+import Watermark from "../Watermark";
 import ServiceCard from "../ServiceCard";
 import { serviceCategories } from "../../lib/content";
 
@@ -46,7 +47,8 @@ export default function AreasWeSupport() {
   };
 
   return (
-    <section id="areas-we-support" className="scroll-mt-20 bg-cream-100 pt-24 sm:pt-32 pb-16 sm:pb-24" data-header-surface="light">
+    <section id="areas-we-support" className="relative overflow-hidden scroll-mt-20 bg-cream-100 pt-24 sm:pt-32 pb-16 sm:pb-24" data-header-surface="light">
+      <Watermark className="text-navy-900" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center max-w-2xl mx-auto mb-14">
           {/* <p className="eyebrow text-gold-800 font-semibold mb-4">How We Serve</p> */}
@@ -62,19 +64,21 @@ export default function AreasWeSupport() {
             const Icon = iconMap[category.icon];
             const isActive = i === activeIndex;
             return (
-              <button
-                key={category.id}
-                onClick={() => selectTab(i)}
-                className={`btn-press inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 border ${
-                  isActive
-                    ? "bg-navy-900 text-gold-300 border-gold-400/70 shadow-[0_0_18px_rgba(228,189,76,0.35)] scale-[1.04]"
-                    : "bg-navy-800 text-cream-200 border-navy-700 hover:bg-navy-700 hover:text-gold-200 hover:border-navy-600"
-                }`}
-                aria-pressed={isActive}
-              >
-                <Icon size={15} className={isActive ? "text-gold-400" : "text-gold-300/60"} />
-                {category.title}
-              </button>
+              <Fragment key={category.id}>
+                {i === 3 && <span aria-hidden="true" className="basis-full h-0" />}
+                <button
+                  onClick={() => selectTab(i)}
+                  className={`btn-press inline-flex items-center gap-2 rounded-full px-4 sm:px-5 py-2.5 text-xs sm:text-sm font-medium tracking-wide transition-all duration-300 border ${
+                    isActive
+                      ? "bg-navy-900 text-gold-300 border-gold-400/70 shadow-[0_0_18px_rgba(228,189,76,0.35)] scale-[1.04]"
+                      : "bg-navy-800 text-cream-200 border-navy-700 hover:bg-navy-700 hover:text-gold-200 hover:border-navy-600"
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <Icon size={15} className={isActive ? "text-gold-400" : "text-gold-300/60"} />
+                  {category.title}
+                </button>
+              </Fragment>
             );
           })}
         </Reveal>
@@ -111,7 +115,11 @@ export default function AreasWeSupport() {
               animate="center"
               exit="exit"
               transition={{ duration: 0.35, ease: "easeInOut" }}
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+              className={`grid grid-cols-1 sm:grid-cols-2 gap-6 ${
+                activeCategory.subServices.length === 2
+                  ? "lg:max-w-5xl lg:grid-cols-2 lg:mx-auto"
+                  : "lg:grid-cols-3"
+              }`}
             >
               {activeCategory.subServices.map((sub) => (
                 <ServiceCard key={sub.name} sub={sub} icon={ActiveIcon} />

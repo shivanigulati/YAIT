@@ -1,13 +1,15 @@
 import { Globe2, Sparkles, RefreshCw, Handshake } from "lucide-react";
 import Reveal from "../Reveal";
 import FlipCard from "../FlipCard";
+import Watermark from "../Watermark";
 import { coreValues } from "../../lib/content";
 
 const icons = [Globe2, Sparkles, RefreshCw, Handshake];
 
 export default function VisionValues() {
   return (
-    <section className="bg-navy-900 pt-16 sm:pt-24 pb-24 sm:pb-32" data-header-surface="dark">
+    <section className="relative overflow-hidden bg-navy-900 pt-16 sm:pt-24 pb-24 sm:pb-32" data-header-surface="dark">
+      <Watermark className="text-cream-100" />
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="text-center max-w-2xl mx-auto mb-14">
           <p className="eyebrow mb-4">Our Vision</p>
