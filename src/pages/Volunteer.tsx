@@ -39,10 +39,10 @@ function Chip({
     <button
       type="button"
       onClick={onClick}
-      className={`rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
+      className={`btn-press rounded-full px-4 py-2 text-sm font-medium border transition-colors ${
         active
-          ? "bg-navy-900 text-cream-100 border-navy-900"
-          : "bg-white text-navy-700 border-navy-900/15 hover:border-navy-900/40"
+          ? "bg-navy-900 text-cream-100 border-gold-400/70 shadow-[0_0_16px_rgba(228,189,76,0.3)]"
+          : "bg-navy-800 text-cream-200 border-navy-700 hover:bg-navy-700 hover:border-navy-600"
       }`}
     >
       {label}
