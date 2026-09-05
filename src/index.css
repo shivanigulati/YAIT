@@ -5,11 +5,31 @@
 html {
   scroll-behavior: smooth;
   overscroll-behavior-y: none;
+  /* Prevent iOS/Android from auto-resizing text on rotate, and stop any
+     decorative absolutely-positioned element from ever causing horizontal
+     scroll on small screens. */
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  overflow-x: hidden;
+  width: 100%;
 }
 
 body {
   @apply bg-cream-100 text-navy-900 font-sans antialiased;
   overscroll-behavior-y: none;
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* iOS Safari zooms the whole page in when a form field's font-size is
+   below 16px on focus. Force a safe minimum only on small screens so
+   the desktop type scale is untouched. */
+@media (max-width: 640px) {
+  input,
+  textarea,
+  select {
+    font-size: 16px !important;
+  }
 }
 
 ::selection {

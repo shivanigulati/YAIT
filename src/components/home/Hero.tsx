@@ -121,7 +121,7 @@ export default function Hero() {
       {/* ---------- Hero statement — fills the first screen ---------- */}
       <motion.div
         style={prefersReducedMotion ? undefined : { opacity: heroOpacity, y: heroY }}
-        className="relative min-h-[100svh] flex flex-col"
+        className="relative min-h-screen min-h-[100svh] max-[500px]:landscape:min-h-0 max-[500px]:landscape:py-16 flex flex-col"
       >
         <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center pt-28 sm:pt-32">
           <motion.h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] text-cream-100">
