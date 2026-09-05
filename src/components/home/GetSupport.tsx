@@ -113,10 +113,10 @@ export default function GetSupport() {
           </p>
         </Reveal>
 
-        <div className="rounded-3xl bg-white/45 backdrop-blur-xl border border-white/70 shadow-card p-6 sm:p-10">
+        <div className="rounded-3xl bg-navy-950/95 backdrop-blur-xl border border-white/10 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)] p-6 sm:p-10">
           {step <= 4 && <StepIndicator steps={steps} current={step} />}
           {step <= 4 && (
-            <p className="font-mono text-caption tracking-widest uppercase text-navy-500/60 -mt-4 mb-6">
+            <p className="font-mono text-caption tracking-widest uppercase text-cream-100/40 -mt-4 mb-6">
               Step {step} of 4
             </p>
           )}
@@ -131,8 +131,8 @@ export default function GetSupport() {
             >
               {step === 1 && (
                 <div>
-                  <h2 className="font-serif text-2xl text-navy-900 mb-1">What do you need?</h2>
-                  <p className="text-navy-500 text-sm mb-7">
+                  <h2 className="font-serif text-2xl text-cream-100 mb-1">What do you need?</h2>
+                  <p className="text-cream-100/60 text-sm mb-7">
                     Select one or more services. Pick as many as apply.
                   </p>
 
@@ -196,43 +196,43 @@ export default function GetSupport() {
 
               {step === 2 && (
                 <div>
-                  <h2 className="font-serif text-2xl text-navy-900 mb-1">
+                  <h2 className="font-serif text-2xl text-cream-100 mb-1">
                     When is this needed?
                   </h2>
-                  <p className="text-navy-500 text-sm mb-7">
+                  <p className="text-cream-100/60 text-sm mb-7">
                     Enter the session or event date, if applicable.
                   </p>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-sm font-medium text-navy-900 mb-2">
+                      <label className="block text-sm font-medium text-cream-100 mb-2">
                         Session / Event Date
                       </label>
                       <input
                         type="date"
                         value={form.date}
                         onChange={(e) => setForm((f) => ({ ...f, date: e.target.value }))}
-                        className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                        className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-gold-400"
                       />
                     </div>
                     <div>
-                      <label className="block text-sm font-medium text-navy-900 mb-2">
+                      <label className="block text-sm font-medium text-cream-100 mb-2">
                         Preferred Time
                       </label>
                       <input
                         type="time"
                         value={form.time}
                         onChange={(e) => setForm((f) => ({ ...f, time: e.target.value }))}
-                        className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                        className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 [color-scheme:dark] focus:outline-none focus:ring-2 focus:ring-gold-400"
                       />
                     </div>
                   </div>
-                  <p className="text-xs text-navy-500/60 mt-4">
+                  <p className="text-xs text-cream-100/40 mt-4">
                     Leave blank for non-date-specific requests.
                   </p>
 
                   <div className="mt-9 flex justify-between">
-                    <button onClick={goBack} className="btn-outline-dark">
+                    <button onClick={goBack} className="btn-outline-light">
                       <ChevronLeft size={16} /> Back
                     </button>
                     <button onClick={goNext} className="btn-gold">
@@ -244,14 +244,14 @@ export default function GetSupport() {
 
               {step === 3 && (
                 <div>
-                  <h2 className="font-serif text-2xl text-navy-900 mb-1">Tell us more</h2>
-                  <p className="text-navy-500 text-sm mb-7">
+                  <h2 className="font-serif text-2xl text-cream-100 mb-1">Tell us more</h2>
+                  <p className="text-cream-100/60 text-sm mb-7">
                     Describe your request and share your contact details.
                   </p>
 
                   <div className="space-y-5">
                     <div>
-                      <label className="block text-sm font-medium text-navy-900 mb-2">
+                      <label className="block text-sm font-medium text-cream-100 mb-2">
                         Description*
                       </label>
                       <textarea
@@ -261,7 +261,7 @@ export default function GetSupport() {
                           setForm((f) => ({ ...f, description: e.target.value }))
                         }
                         placeholder="Describe your session, what you need, any special requirements..."
-                        className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                        className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 placeholder:text-cream-100/35 focus:outline-none focus:ring-2 focus:ring-gold-400"
                       />
                       {errors.description && (
                         <p className="text-red-600 text-sm mt-1.5">{errors.description}</p>
@@ -270,44 +270,44 @@ export default function GetSupport() {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                       <div>
-                        <label className="block text-sm font-medium text-navy-900 mb-2">
+                        <label className="block text-sm font-medium text-cream-100 mb-2">
                           Your Name*
                         </label>
                         <input
                           value={form.name}
                           onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
-                          className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                          className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 focus:outline-none focus:ring-2 focus:ring-gold-400"
                         />
                         {errors.name && (
                           <p className="text-red-600 text-sm mt-1.5">{errors.name}</p>
                         )}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy-900 mb-2">
+                        <label className="block text-sm font-medium text-cream-100 mb-2">
                           Email*
                         </label>
                         <input
                           type="email"
                           value={form.email}
                           onChange={(e) => setForm((f) => ({ ...f, email: e.target.value }))}
-                          className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                          className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 focus:outline-none focus:ring-2 focus:ring-gold-400"
                         />
                         {errors.email && (
                           <p className="text-red-600 text-sm mt-1.5">{errors.email}</p>
                         )}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy-900 mb-2">
+                        <label className="block text-sm font-medium text-cream-100 mb-2">
                           Phone
                         </label>
                         <input
                           value={form.phone}
                           onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
-                          className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                          className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 focus:outline-none focus:ring-2 focus:ring-gold-400"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium text-navy-900 mb-2">
+                        <label className="block text-sm font-medium text-cream-100 mb-2">
                           Department / Centre
                         </label>
                         <input
@@ -316,7 +316,7 @@ export default function GetSupport() {
                             setForm((f) => ({ ...f, department: e.target.value }))
                           }
                           placeholder="e.g. Young Adults, GDLP"
-                          className="w-full rounded-xl border border-navy-900/15 bg-white px-4 py-3 text-sm text-navy-900 focus:outline-none focus:ring-2 focus:ring-gold-400"
+                          className="w-full rounded-xl border border-navy-700 bg-navy-800 px-4 py-3 text-sm text-cream-100 placeholder:text-cream-100/35 focus:outline-none focus:ring-2 focus:ring-gold-400"
                         />
                       </div>
                     </div>
@@ -335,8 +335,8 @@ export default function GetSupport() {
 
               {step === 4 && (
                 <div>
-                  <h2 className="font-serif text-2xl text-navy-900 mb-1">Review your request</h2>
-                  <p className="text-navy-500 text-sm mb-7">
+                  <h2 className="font-serif text-2xl text-cream-100 mb-1">Review your request</h2>
+                  <p className="text-cream-100/60 text-sm mb-7">
                     Please verify your details before submitting.
                   </p>
 
@@ -359,12 +359,12 @@ export default function GetSupport() {
                     ].map((row) => (
                       <div
                         key={row.label}
-                        className="rounded-xl border border-navy-900/10 bg-white px-5 py-4"
+                        className="rounded-xl border border-navy-700 bg-navy-800 px-5 py-4"
                       >
-                        <p className="font-mono text-micro tracking-widest uppercase text-gold-500 mb-1.5">
+                        <p className="font-mono text-micro tracking-widest uppercase text-gold-400 mb-1.5">
                           {row.label}
                         </p>
-                        <p className="text-sm text-navy-900 leading-relaxed">{row.value}</p>
+                        <p className="text-sm text-cream-100 leading-relaxed">{row.value}</p>
                       </div>
                     ))}
                   </div>
@@ -385,19 +385,19 @@ export default function GetSupport() {
                   <div className="mx-auto h-16 w-16 rounded-full bg-gold-100 flex items-center justify-center mb-6">
                     <CheckCircle2 size={32} className="text-gold-500" />
                   </div>
-                  <h2 className="font-serif text-2xl sm:text-3xl text-navy-900 mb-2">
+                  <h2 className="font-serif text-2xl sm:text-3xl text-cream-100 mb-2">
                     Request submitted
                   </h2>
-                  <p className="text-navy-500 max-w-md mx-auto mb-6 leading-relaxed">
+                  <p className="text-cream-100/60 max-w-md mx-auto mb-6 leading-relaxed">
                     Your support request has been received. Our team will reach out to you
                     shortly.
                   </p>
 
-                  <div className="inline-block font-mono text-xs tracking-widest uppercase text-gold-600 bg-gold-50 border border-gold-200 rounded-full px-4 py-2 mb-8">
+                  <div className="inline-block font-mono text-xs tracking-widest uppercase text-gold-300 bg-navy-800 border border-gold-400/40 rounded-full px-4 py-2 mb-8">
                     Ticket · {ticketId}
                   </div>
 
-                  <div className="max-w-md mx-auto rounded-2xl bg-navy-900 px-7 py-8 mb-8">
+                  <div className="max-w-md mx-auto rounded-2xl bg-navy-800 border border-gold-400/20 px-7 py-8 mb-8">
                     <p className="font-serif italic text-lg text-gold-300 leading-relaxed">
                       "Where there is love, there is service."
                     </p>
@@ -406,7 +406,7 @@ export default function GetSupport() {
                     </p>
                   </div>
 
-                  <p className="text-navy-500 max-w-md mx-auto text-sm leading-relaxed mb-8">
+                  <p className="text-cream-100/60 max-w-md mx-auto text-sm leading-relaxed mb-8">
                     Thank you for reaching out to SOS YA IT and giving us the opportunity to
                     serve. We are grateful to be part of this seva journey and will get back
                     to you soon.
@@ -418,7 +418,7 @@ export default function GetSupport() {
                     </button>
                     <button
                       onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-                      className="btn-outline-dark"
+                      className="btn-outline-light"
                     >
                       Back to Top
                     </button>
