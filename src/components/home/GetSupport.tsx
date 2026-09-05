@@ -115,7 +115,7 @@ export default function GetSupport() {
           </p>
         </Reveal>
 
-        <div className="rounded-3xl bg-navy-950/95 backdrop-blur-xl border border-white/10 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)] p-6 sm:p-10">
+        <div className="rounded-3xl bg-navy-800/95 backdrop-blur-xl border border-navy-600/40 shadow-[0_25px_70px_-20px_rgba(0,0,0,0.6)] p-6 sm:p-10">
           {step <= 4 && <StepIndicator steps={steps} current={step} />}
           {step <= 4 && (
             <p className="font-mono text-caption tracking-widest uppercase text-cream-100/40 -mt-4 mb-6">
@@ -152,8 +152,8 @@ export default function GetSupport() {
                                 key={sub.name}
                                 className={`btn-press flex items-center gap-3 rounded-xl border px-4 py-3 cursor-pointer transition-colors ${
                                   checked
-                                    ? "border-gold-400 bg-navy-900 shadow-[0_0_16px_rgba(228,189,76,0.3)]"
-                                    : "border-navy-700 bg-navy-800 hover:bg-navy-700 hover:border-navy-600"
+                                    ? "border-gold-400 bg-cream-50 shadow-[0_0_16px_rgba(228,189,76,0.35)]"
+                                    : "border-cream-300 bg-cream-100 hover:bg-cream-50 hover:border-cream-400"
                                 }`}
                               >
                                 <input
@@ -167,12 +167,12 @@ export default function GetSupport() {
                                   className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md border transition-colors ${
                                     checked
                                       ? "bg-gold-400 border-gold-400"
-                                      : "bg-navy-900/50 border-cream-100/25"
+                                      : "bg-white border-navy-900/25"
                                   }`}
                                 >
                                   {checked && <Check size={13} strokeWidth={3} className="text-navy-900" />}
                                 </span>
-                                <span className="text-sm text-cream-100">{sub.name}</span>
+                                <span className="text-sm text-navy-900">{sub.name}</span>
                               </label>
                             );
                           })}
