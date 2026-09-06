@@ -6,7 +6,7 @@ import Logo from "./Logo";
 
 const navLinks = [
   { label: "About", to: "/#about" },
-  { label: "Ways to Serve", to: "/#areas-we-support" },
+  { label: "Sewa Areas", to: "/#areas-we-support" },
   { label: "Our Story", to: "/#our-story" },
 ];
 

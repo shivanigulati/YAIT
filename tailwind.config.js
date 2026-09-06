@@ -40,8 +40,13 @@ export default {
         },
       },
       fontFamily: {
-        serif: ["'Cormorant Garamond'", "Georgia", "serif"],
-        sans: ["Lato", "system-ui", "sans-serif"],
+        alice: ["Alice", "Georgia", "serif"],
+        brand: ["Montserrat", "system-ui", "sans-serif"],
+        editorial: ["Merriweather", "Georgia", "serif"],
+        classic: ["Lora", "Georgia", "serif"],
+        serif: ["'Playfair Display'", "Georgia", "serif"],
+        sans: ["'DM Sans'", "system-ui", "sans-serif"],
+        modern: ["Manrope", "system-ui", "sans-serif"],
         mono: ["'JetBrains Mono'", "ui-monospace", "monospace"],
       },
       // A small, deliberate set of type-scale steps for sizes that fall

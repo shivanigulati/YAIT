@@ -24,7 +24,7 @@ export default function Logo({ variant = "dark", className = "" }: LogoProps) {
     <div className={`flex items-center gap-3 ${className}`}>
       <Emblem variant={variant} />
       <div className="leading-tight">
-        <div className={`font-mono text-micro sm:text-micro tracking-[0.22em] uppercase ${textSecondary}`}>
+        <div className={`font-alice text-micro sm:text-micro tracking-[0.22em] uppercase ${textSecondary}`}>
           Science of Spirituality
         </div>
         <div className={`font-serif font-medium text-base sm:text-lg tracking-wide ${textPrimary}`}>

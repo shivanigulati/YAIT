@@ -128,7 +128,7 @@ export default function Hero() {
         className="relative min-h-screen min-h-[100svh] max-[500px]:landscape:min-h-0 max-[500px]:landscape:py-16 flex flex-col"
       >
         <div className="flex-1 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 text-center pt-28 sm:pt-32">
-          <motion.h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.08] text-cream-100">
+          <motion.h1 className="font-serif text-4xl sm:text-6xl lg:text-7xl leading-[1.2] text-cream-100">
             {WORDS.map((word, i) => (
               <motion.span
                 key={word}
@@ -146,7 +146,8 @@ export default function Hero() {
               initial={{ opacity: 0, y: 22 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 + WORDS.length * 0.14, ease: [0.22, 1, 0.36, 1] }}
-              className="block italic mt-1 shimmer-gold animate-shimmer"
+              style={{ position: "relative", zIndex: 10 }}
+              className="font-'Script MT Bold' block italic mt-1 pb-2 shimmer-gold animate-shimmer"
             >
               Through Technology.
             </motion.span>

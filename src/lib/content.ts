@@ -54,21 +54,21 @@ export const serviceCategories: ServiceCategory[] = [
   },
   {
     id: "offline-tech-setup",
-    title: "Offline Tech Setup",
+    title: "Offline Areas",
     shortLabel: "OFFLINE TECH SETUP",
     tagline: "Support for in-person events and gatherings.",
     icon: "Speaker",
     subServices: [
       {
-        name: "Mic Setup",
+        name: "Tech/Dual Monitor Setup",
         description:
           "We can help set up and test microphones beforehand, so the sound comes through clearly for everyone in the room.",
       },
-      {
-        name: "Projector/Display",
-        description:
-          "We're happy to help with setting up the projector or screen, so your slides and visuals show up the way you'd like.",
-      },
+      // {
+      //   name: "Projector/Display",
+      //   description:
+      //     "We're happy to help with setting up the projector or screen, so your slides and visuals show up the way you'd like.",
+      // },
       {
         name: "Anchoring (In Person)",
         description:
